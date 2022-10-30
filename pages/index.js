@@ -20,7 +20,7 @@ export default function Home() {
         </div>
       </nav>
 
-      <div className='container' />
+      <div className='container'/>
 
       <Header/>
 
