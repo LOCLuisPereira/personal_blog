@@ -1,5 +1,4 @@
 import 'bootstrap/dist/css/bootstrap.css'
-import Link from 'next/Link'
 
 const NavTop = () => {
 
