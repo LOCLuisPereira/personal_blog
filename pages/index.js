@@ -1,9 +1,13 @@
-import Head from 'next/head'
+import 'bootstrap/dist/css/bootstrap.css'
+
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+
 
 export default function Home() {
   return (
-    <p>I am Luis Pereira</p>
+    <div className='card'>
+      <p className='card-title'>Hello</p>
+
+    </div>
   )
 }
