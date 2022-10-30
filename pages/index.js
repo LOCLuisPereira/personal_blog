@@ -14,8 +14,8 @@ export default function Home() {
 
         <div class="collapse navbar-collapse">
           <div class="navbar-nav">
-            <a class="nav-item nav-link" href="#">Features</a>
-            <a class="nav-item nav-link" href="#">Pricing</a>
+            <a class="nav-item nav-link" href="#">JustForShow</a>
+            <a class="nav-item nav-link" href="#">NotWorking</a>
           </div>
         </div>
       </nav>
