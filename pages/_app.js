@@ -1,7 +1,12 @@
-import '../styles/globals.css'
+import NavTop from '../components/navTop'
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps}/>
+  return (
+    <div style={{'fontFamily':'georgia'}} >
+      <NavTop/>
+      <Component {...pageProps}/>
+    </div>
+  )
 }
 
 export default MyApp

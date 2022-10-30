@@ -21,70 +21,47 @@ const leetcode = ''
 
 const Header = () => {
     return (
-        <div className='container' style={{'fontFamily':'Georgia'}}>
-
-
-            <div className='row'>
-                <div className='col'>
-                    <div className='container align-center'>
-                        
-                        <div className='container' style={{'paddingTop':'3rem', 'paddingLeft':'1rem'}}/>
-                        
-                        
-                        <div className='card justify-items-center border-white'>
-                            <h3 className='align-middle' style={{'paddingLeft':'1rem'}}>{name}</h3>
-                            <h5 className='align-middle' style={{'paddingLeft':'1rem'}}>{role}</h5>
-                        </div>
-        
-                        <div className='container' style={{'paddingTop':'3rem'}}/>
-
-                        <div className='card bg-dark text-white text-left rounded justify-items-center'>
-                            <p className='card-text display-6 align-middle' style={{'padding':'2rem'}}>{intro_text}</p>
-                        </div>
+        <div className='container align-center' style={{'fontFamily':'Georgia'}}>
             
-                        <div className='container' style={{'paddingTop':'3rem'}}/>
+            <div className='container' style={{'paddingTop':'3rem', 'paddingLeft':'1rem'}}/>
 
-                        <div className='card justify-items-center border-white'>
-                            <h3 className='align-middle' style={{'paddingLeft':'1rem'}}>Where can you find me?</h3>
-                            
-                            <a style={{'paddingLeft':'1rem'}}>
-                                <big><BsMailbox/></big> <a className='align middle text-decoration-none text-muted' style={{'paddingLeft':'1rem'}}>{email}</a>
-                            </a>
+            <div className='card justify-items-center border-white'>
+            <h3 className='align-middle' style={{'paddingLeft':'1rem'}}>{name}</h3>
+            <h5 className='align-middle' style={{'paddingLeft':'1rem'}}>{role}</h5>
+            </div>
+            
 
-                            <a style={{'paddingLeft':'1rem'}}>
-                                <big><BsFillTelephoneFill/></big> <a className='align middle text-decoration-none text-muted' style={{'paddingLeft':'1rem'}}>{phone}</a>
-                            </a>
+            <div className='container' style={{'paddingTop':'3rem'}}/>
 
-                            <a style={{'paddingLeft':'1rem'}}>
-                                <big><BsLinkedin/></big> <a className='align middle text-decoration-none text-muted' style={{'paddingLeft':'1rem'}}>{linkedin}</a>
-                            </a>
-
-                            <a style={{'paddingLeft':'1rem'}}>
-                                <big><BsGithub/></big> <a className='align middle text-decoration-none text-muted' style={{'paddingLeft':'1rem'}}>{github}</a>
-                            </a>
-
-                            <a style={{'paddingLeft':'1rem'}}>
-                                <big><BsMedium/></big> <a className='align middle text-decoration-none text-muted' style={{'paddingLeft':'1rem'}}>{medium}</a>
-                            </a>
-
-                        </div>
-
-
-
-                    </div>
-                </div>
-                <div className='col'>
-                    <div className='container justify-content-center d-flex rounded' style={{'height':'90vh'}}>
-                        <img src="/photo.jpg" alt="..." className="img-fluid" ></img>
-                    </div>
-                </div>
+            <div className='card bg-dark text-white text-left rounded justify-items-center'>
+                <p className='card-text display-6 align-middle' style={{'padding':'2rem'}}>{intro_text}</p>
             </div>
 
+            <div className='container' style={{'paddingTop':'3rem'}}/>
 
+            <div className='card justify-items-center border-white'>
+                <h3 className='align-middle' style={{'paddingLeft':'1rem'}}>Where can you find me?</h3>
+                
+                <a style={{'paddingLeft':'1rem'}}>
+                    <big><BsMailbox/></big> <a className='align middle text-decoration-none text-muted' style={{'paddingLeft':'1rem'}}>{email}</a>
+                </a>
 
+                <a style={{'paddingLeft':'1rem'}}>
+                    <big><BsFillTelephoneFill/></big> <a className='align middle text-decoration-none text-muted' style={{'paddingLeft':'1rem'}}>{phone}</a>
+                </a>
 
+                <a style={{'paddingLeft':'1rem'}}>
+                    <big><BsLinkedin/></big> <a className='align middle text-decoration-none text-muted' style={{'paddingLeft':'1rem'}}>{linkedin}</a>
+                </a>
 
+                <a style={{'paddingLeft':'1rem'}}>
+                    <big><BsGithub/></big> <a className='align middle text-decoration-none text-muted' style={{'paddingLeft':'1rem'}}>{github}</a>
+                </a>
 
+                <a style={{'paddingLeft':'1rem'}}>
+                    <big><BsMedium/></big> <a className='align middle text-decoration-none text-muted' style={{'paddingLeft':'1rem'}}>{medium}</a>
+                </a>
+            </div>
         </div>
     )
 }
