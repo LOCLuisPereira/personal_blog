@@ -183,7 +183,7 @@ const Curriculum = () => {
                         <div className='card justify-items-center border-white'>
                             <h3 className='align-middle' style={{'paddingLeft':'1rem'}}><span style={{'fontSize':'2rem'}}><GiDiploma/></span> Certificates</h3>
                             <hr style={{'paddingTop':'0rem'}}/>
-                            <div style={{'max-height':'30vh', 'overflowY':'scroll'}}>
+                            <div style={{'maxHeight':'30vh', 'overflowY':'scroll'}}>
                                 <ul className='list-group'>
                                     {certificates.map(cert => {
                                         return  <li key={(Math.random()*10000).toString()} className='list-group-item border-0' style={{'height':'8vh'}}>

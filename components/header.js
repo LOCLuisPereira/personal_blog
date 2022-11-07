@@ -43,23 +43,23 @@ const Header = () => {
                 <h3 className='align-middle' style={{'paddingLeft':'1rem'}}>Where can you find me?</h3>
                 
                 <a style={{'paddingLeft':'1rem'}}>
-                    <big><BsMailbox/></big> <a className='align middle text-decoration-none text-muted' style={{'paddingLeft':'1rem'}}>{email}</a>
+                    <big><BsMailbox/></big> <span className='align middle text-decoration-none text-muted' style={{'paddingLeft':'1rem'}}>{email}</span>
                 </a>
 
                 <a style={{'paddingLeft':'1rem'}}>
-                    <big><BsFillTelephoneFill/></big> <a className='align middle text-decoration-none text-muted' style={{'paddingLeft':'1rem'}}>{phone}</a>
+                    <big><BsFillTelephoneFill/></big> <span className='align middle text-decoration-none text-muted' style={{'paddingLeft':'1rem'}}>{phone}</span>
                 </a>
 
                 <a style={{'paddingLeft':'1rem'}}>
-                    <big><BsLinkedin/></big> <a className='align middle text-decoration-none text-muted' style={{'paddingLeft':'1rem'}}>{linkedin}</a>
+                    <big><BsLinkedin/></big> <span className='align middle text-decoration-none text-muted' style={{'paddingLeft':'1rem'}}>{linkedin}</span>
                 </a>
 
                 <a style={{'paddingLeft':'1rem'}}>
-                    <big><BsGithub/></big> <a className='align middle text-decoration-none text-muted' style={{'paddingLeft':'1rem'}}>{github}</a>
+                    <big><BsGithub/></big> <span className='align middle text-decoration-none text-muted' style={{'paddingLeft':'1rem'}}>{github}</span>
                 </a>
 
                 <a style={{'paddingLeft':'1rem'}}>
-                    <big><BsMedium/></big> <a className='align middle text-decoration-none text-muted' style={{'paddingLeft':'1rem'}}>{medium}</a>
+                    <big><BsMedium/></big> <span className='align middle text-decoration-none text-muted' style={{'paddingLeft':'1rem'}}>{medium}</span>
                 </a>
             </div>
         </div>

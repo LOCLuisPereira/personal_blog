@@ -1,3 +1,4 @@
+/* eslint-disable */
 import 'bootstrap/dist/css/bootstrap.css'
 
 import {useState} from 'react'
@@ -22,7 +23,6 @@ const Cell = ({value, lifes, setLifes, currentCells, setCurrentCells}) => {
 
     return (
         <div
-        key={(Math.random()*1000).toString()}
         className={`col-1 border`}
         onClick={f}
         style={{
@@ -151,10 +151,11 @@ const Nanogram = () => {
             <select
             className='form-select form-select-sm text-center'
             aria-label='Size of Board'
+            defaultValue='-1'
             onChange={sizeChanger}
             style={{'display' : size != -1 ? 'none' : 'block'}}
             >
-                <option selected value='-1'>Select size...</option>
+                <option value='-1'>Select size...</option>
                 <option value='5'>5x5</option>
                 <option value='10'>10x10</option>
                 <option value='15'>15x15</option>
@@ -163,10 +164,11 @@ const Nanogram = () => {
             <select
             className='form-select form-select-sm text-center'
             aria-label='Difficulty of the Game'
+            defaultValue={'.'}
             onChange={difficultyChanger}
             style={{'display' : size == -1 || difficulty != '.' ? 'none' : 'block'}}
             >
-                <option selected value='.'>Select difficulty...</option>
+                <option value='.'>Select difficulty...</option>
                 <option value='easy'>Easy</option>
                 <option value='medium'>Medium</option>
                 <option value='hard'>Hard</option>
@@ -236,13 +238,13 @@ const Nanogram = () => {
                 </div>
 
                 { board.map( x => { return (
-                    <div className='d-flex flex-column' key={(Math.random()*10000).toString()}>
+                    <div className='d-flex flex-column'>
                         <div className='d-flex justify-content-center'>
                         {
                             x.map( x => { return (
-                                <Cell key={(Math.random()*10000).toString()} value={x} lifes={lifes} setLifes={setLifes} currentCells={currentCells} setCurrentCells={setCurrentCells}/>
+                                <Cell value={x} lifes={lifes} setLifes={setLifes} currentCells={currentCells} setCurrentCells={setCurrentCells}/>
                             )})
-                        }   
+                        } 
                         </div>
                     </div>
                 )})}
