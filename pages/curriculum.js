@@ -150,7 +150,7 @@ const Curriculum = () => {
             <hr style={{'paddingTop':'0rem'}}/>
             <ul className='list-group'>
                 {university.map(course => {
-                    return  <li className='list-group-item border-0'>
+                    return  <li className='list-group-item border-0' key={(Math.random()*10000).toString()}>
                         <p className='align-middle' style={{'paddingLeft':'1rem'}} key={course.name}>
                             <strong>{course.name}</strong>, {course.institution}, {course.start}-{course.end}.
                         </p>
@@ -165,11 +165,11 @@ const Curriculum = () => {
             <hr style={{'paddingTop':'0rem'}}/>
             <ul className='list-group list-group-flush'>
                 {research.map(job => {
-                    return <li className='list-group-item border-0'>
+                    return <li className='list-group-item border-0' key={(Math.random()*10000).toString()}>
                         <p className='align-middle' style={{'paddingLeft':'1rem'}} key={job.position}>
                             <strong>{job.position}</strong>, {job.description}, {job.institution}, {job.start}-{job.end}.
                         </p>
-                        <p style={{'paddingLeft':'1rem'}}>{job.tags.map(xs=>{return (<span className='badge bg-dark' style={{'margin':'0.25rem'}}>{xs}</span>)})}</p>
+                        <p style={{'paddingLeft':'1rem'}}>{job.tags.map(xs=>{return (<span className='badge bg-dark' key={(Math.random()*10000).toString()} style={{'margin':'0.25rem'}}>{xs}</span>)})}</p>
                     </li>
                 })}
             </ul>
@@ -186,7 +186,7 @@ const Curriculum = () => {
                             <div style={{'max-height':'30vh', 'overflowY':'scroll'}}>
                                 <ul className='list-group'>
                                     {certificates.map(cert => {
-                                        return  <li className='list-group-item border-0' style={{'height':'8vh'}}>
+                                        return  <li key={(Math.random()*10000).toString()} className='list-group-item border-0' style={{'height':'8vh'}}>
                                             <p className='text-left align-middle' style={{'paddingLeft':'1rem'}} key={cert.name}>
                                                 <strong>{cert.name}</strong>, {cert.platform}, {cert.date}.
                                             </p>
@@ -202,8 +202,8 @@ const Curriculum = () => {
                             <hr style={{'paddingTop':'0rem'}}/>
                             <ul className='list-group'>
                                 {competitions.map(comp => {
-                                    return  <li className='list-group-item border-0'>
-                                        <p className='align-middle' style={{'paddingLeft':'1rem'}} key={comp.name}>
+                                    return  <li className='list-group-item border-0' key={(Math.random()*10000).toString()}>
+                                        <p className='align-middle' key={(Math.random()*10000).toString()} style={{'paddingLeft':'1rem'}}>
                                             <strong>{comp.name}</strong>, {comp.location}, {comp.year}.
                                         </p>
                                     </li>

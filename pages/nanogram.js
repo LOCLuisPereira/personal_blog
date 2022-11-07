@@ -199,9 +199,9 @@ const Nanogram = () => {
                         <tbody>
                         {infoCols.map((x) => {
                             return (
-                                <tr>
+                                <tr key={(Math.random()*10000).toString()}>
                                     <td className='text-center'>{x[0]}</td>
-                                    <td>{x[1].map((x)=>{return(<span style={{'paddingRight':'1rem'}}>{x}</span>)})}</td>
+                                    <td key={(Math.random()*10000).toString()}>{x[1].map((x)=>{return(<span key={(Math.random()*10000).toString()} style={{'paddingRight':'1rem'}}>{x}</span>)})}</td>
                                 </tr>
                             )
                         })}
@@ -219,9 +219,9 @@ const Nanogram = () => {
                         <tbody>
                         {infoRows.map((x) => {
                             return (
-                                <tr>
+                                <tr key={(Math.random()*10000).toString()}>
                                     <td className='text-center'>{x[0]}</td>
-                                    <td>{x[1].map((x)=>{return(<span style={{'paddingRight':'1rem'}}>{x}</span>)})}</td>
+                                    <td key={(Math.random()*10000).toString()}>{x[1].map((x)=>{return(<span key={(Math.random()*10000).toString()} style={{'paddingRight':'1rem'}}>{x}</span>)})}</td>
                                 </tr>
                             )
                         })}
@@ -236,11 +236,11 @@ const Nanogram = () => {
                 </div>
 
                 { board.map( x => { return (
-                    <div className='d-flex flex-column'>
+                    <div className='d-flex flex-column' key={(Math.random()*10000).toString()}>
                         <div className='d-flex justify-content-center'>
                         {
                             x.map( x => { return (
-                                <Cell value={x} lifes={lifes} setLifes={setLifes} currentCells={currentCells} setCurrentCells={setCurrentCells}/>
+                                <Cell key={(Math.random()*10000).toString()} value={x} lifes={lifes} setLifes={setLifes} currentCells={currentCells} setCurrentCells={setCurrentCells}/>
                             )})
                         }   
                         </div>
