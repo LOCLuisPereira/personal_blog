@@ -9,21 +9,27 @@ const NavTop = () => {
             <h2 style={{'fontFamily':'Gerogia'}}>Luis Pereira</h2>
         </div>
         <div className='border-bottom' style={{'paddingTop':'0.5rem'}}>
-            <a>
+            <span>
                 <Link className='text-decoration-none text-black' href='/'>Home</Link>
-            </a>
+            </span>
 
-            <a style={{'paddingLeft':'2rem'}}/>
+            <span style={{'paddingLeft':'2rem'}}/>
 
-            <a>
+            <span>
                 <Link className='text-decoration-none text-black' href='/curriculum'>Curriculum</Link>
-            </a>
+            </span>
 
-            <a style={{'paddingLeft':'2rem'}}/>
+            <span style={{'paddingLeft':'2rem'}}/>
 
-            <a>
+            <span>
+                <Link className='text-decoration-none text-black' href='/projects'>Projects</Link>
+            </span>
+
+            <span style={{'paddingLeft':'2rem'}}/>
+
+            <span>
                 <Link className='text-decoration-none text-black' href='/nanogram'>Nanogram</Link>
-            </a>
+            </span>
         </div>
     </div>
     )
