@@ -1,5 +1,5 @@
 {
-  "name": "personal_site",
+  "name": "sitetmp",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,16 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "bootstrap": "^5.2.2",
-    "next": "13.0.0",
+    "next": "13.0.3",
     "react": "18.2.0",
-    "react-bootstrap-icons": "^1.9.1",
     "react-dom": "18.2.0",
     "react-icons": "^4.6.0",
     "styled-components": "^5.3.6"
   },
   "devDependencies": {
-    "eslint": "8.26.0",
-    "eslint-config-next": "13.0.0"
+    "eslint": "8.27.0",
+    "eslint-config-next": "13.0.3"
   }
 }
