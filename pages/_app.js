@@ -1,11 +1,12 @@
-import NavTop from '../components/navTop'
-import Footer from '../components/footer'
+import Navigation from '../Components/Navigation'
+import Footer from '../Components/Footer'
+import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div style={{'fontFamily':'georgia'}} >
-      <NavTop/>
-      <Component {...pageProps}/>
+    <div>
+      <Navigation/>
+      <Component {...pageProps} />
       <Footer/>
     </div>
   )

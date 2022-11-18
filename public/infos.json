@@ -1,0 +1,98 @@
+{
+    "home" : {
+        "presentation" : "Welcome! I am an enthusiatic sofware engineer who loves building solutions that breathe in and out real world data."
+    },
+    "infos" : {
+        "current_tole" : "Master's in Computer Science and Engineering",
+        "linkedin" : "luiscavacapereira",
+        "email" : "luiscavacapereira@gmail.com",
+        "phone" : "(+351) 968 152 552",
+        "github" : "LOCLuisPereira",
+        "medium" : "@luiscavacapereira"
+    },
+    "curriculum" : {
+        "motivation" : "I am a computer scientist and engineer who loves to solve problems. In the past, I worked with several machine learning areas, such as computer vision and natural language processing. At the present time, I am leaning towards cloud, back end and data engineering challenges.",
+        "education" : [
+            {
+                "start" : 2019,
+                "end" : 2022,
+                "name" : "Master's Degree in Computer Science and Engineering",
+                "institution" : "Universidade da Beira Interior"
+            },
+            {
+                "start" : 2016,
+                "end" : 2019,
+                "name" : "Bachelor's Degree in Computer Science and Engineering",
+                "institution" : "Universidade da Beira Interior"
+            }
+        ],
+        "research" : [
+            {
+                "start" : 2020,
+                "end" : 2021,
+                "position" : "Graduate Researcher",
+                "institution" : "NOVA-LINCs",
+                "description" : "Research on state-of-the-art methods that optimize resource utilization on neural networks used for semantic segmentation",
+                "tags" : [
+                    "Semantic Segmentation", "Computer Vision", "Neural Networks", "Deep Learning",
+                    "Machine Learning", "Data Science", "PyTorch", "Python"
+                ]
+            }
+        ],
+        "competitions" : [
+            {
+                "year" : 2018,
+                "name" : "SWERC 2018",
+                "location" : "Paris, France"
+            },
+            {
+                "year" : 2018,
+                "name" : "MIUP18",
+                "location" : "Covilhã, Portugal"
+            }
+        ],
+        "certificates" : [
+            {"date":"Sep 22", "name":"2022 Python for Machine Learning & Data Science Masterclass", "platform":"Udemy"},
+            {"date":"Sep 22", "name":"Data Science: Natural Language Processing (NLP) in Python", "platform":"Udemy"},
+
+            {"date":"Nov 22", "name":"Graph Developer - Associate", "platform":"Apollo"},
+
+            {"date":"Aug 22", "name":"M22P: MongoDB for Python Developers", "platform":"MongoDB University"},
+            {"date":"Aug 22", "name":"M320: Data Modeling", "platform":"MongoDB University"},
+
+            {"date":"Nov 22", "name":"Fundamentals of AWS", "platform":"Educative, Inc."},            
+
+            {"date":"Nov 22", "name":"Intro to Machine Learning", "platform":"Kaggle"},
+            {"date":"Nov 22", "name":"Data Cleaning", "platform":"Kaggle"},
+            {"date":"Nov 22", "name":"Pandas", "platform":"Kaggle"},
+            {"date":"Sep 22", "name":"Intro to AI Ethics", "platform":"Kaggle"},
+            {"date":"Nov 22", "name":"Python", "platform":"Kaggle"},
+            {"date":"Nov 22", "name":"Intro to SQL", "platform":"Kaggle"},
+
+            {"date":"Sep 22", "name":"Understanding Data Machine Learning", "platform":"DataCamp"},
+            {"date":"Sep 22", "name":"Understanding Data Engineering", "platform":"DataCamp"},
+            {"date":"Sep 22", "name":"Understanding Data Science", "platform":"DataCamp"},
+            {"date":"Sep 22", "name":"Introduction To Python", "platform":"DataCamp"},
+            {"date":"Sep 22", "name":"Introduction To SQL", "platform":"DataCamp"}
+        ]
+    },
+    "projects" : [
+        {
+            "title" : "Reddit Mining",
+            "description": "Reddit contains imeasurable amount of data. The project focus on mining data and create datasets following a wide array of world event. After the creation of this datasets, data science and machine learning algorithm are going to be applied to analyse the latent information. Finally, information will be feed to the end user via a web-based dashboard.",
+            "technologies" : [
+                "Data Science", "Data Engineering", "Software Development", "Web Development", "Python", "FastAPI", "Redis", "Pandas", "NumPy", "PyTorch", "MongoDB", "NextJS", "ReactJS", "StyledComponents", "ChartJS", "HTML", "CSS", "Git"
+            ],
+            "repo" : "https://github.com/LOCLuisPereira/RedditMining",
+            "status" : "Ongoing"
+        },        {
+            "title" : "This (Portfolio) Website",
+            "description": "This project allows me to have my little space in the vast internet. The website was built using NextJS, styled using Styled Components, React Icons and CSS. For now, it is possible to see my skills, education, projects and play a little game of nanogram.",
+            "technologies" : [
+                "Software Development", "Web Development", "NextJS", "ReactJS", "StyledComponents", "HTML", "CSS", "Vercel", "Git"
+            ],
+            "repo" : "https://github.com/LOCLuisPereira/personal_blog",
+            "status" : "Ongoing"
+        }
+    ]
+}

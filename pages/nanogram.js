@@ -1,64 +1,153 @@
-/* eslint-disable */
-import 'bootstrap/dist/css/bootstrap.css'
+import styled from 'styled-components'
+import {use, useState} from 'react'
+import Head from 'next/head'
 
-import {useState} from 'react'
+/* WRAPPERS */
+const MainContainer = styled.div`
+    padding: 0.01rem;
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+    background-color: #F7F7F2;
+    width:100wh;
+    height:100vh;
+    overflow: scroll
+`
+const NeutralContainer = styled.div`
+    background-color: #F7F7F2;
+    margin-top : 2rem;
+    margin-left : 2rem;
+    margin-right : 2rem;
+`
+const LightTitle = styled.h1`
+    color: black;
+    font-family: Georgia, serif;
+    font-size: 2.5rem;
+    text-align:left;
+    padding-left: 2rem;
+`
+const LightSubTitle = styled.h2`
+    color: black;
+    font-family: Georgia, serif;
+    font-size: 1.5rem;
+    text-align:left;
+    padding-left: 2rem;
+`
+const LightSubSubTitle = styled.h2`
+    color: black;
+    font-family: Georgia, serif;
+    font-size: 1rem;
+    text-align:left;
+    padding-left: 2rem;
+`
+const DarkContainer = styled.div`
+    font-family: Georgia, serif;
+    color: white;
+    border-style: solid;
+    border-width: 0.1rem;
+    background-color: #222725;
+    margin-top : 4rem;
+    margin-left : 4rem;
+    margin-right : 4rem;
+    margin-bottom : 4rem;
+    box-shadow: 15px 15px #121113;
 
-const Cell = ({value, lifes, setLifes, currentCells, setCurrentCells}) => {
-    const [vs, changeVs] = useState(0)
-    const [disabled, setDisabled] = useState(false)
-
-    const f = (event) => {
-        event.preventDefault()
-        if (!disabled) {
-            setDisabled(true)
-            if (value == 1){
-                setCurrentCells(currentCells+1)
-                changeVs(1)
-            } else {
-                setLifes(lifes-1)
-                changeVs(2)
-            }
-        }
+    &:hover{
+        background-color: #899878;
+        color: black;
     }
-
+`
+const DarkTitle = styled.h1`
+    font-size: 1.5rem;
+    text-align:center;
+`
+const Table = styled.table`
+    width: 70vw;
+    margin-left: 15vw;
+    margin-right: 15vw;
+    margin-top: 1.5rem;
+    border-style: solid;
+    border-width: 0.1rem;
+    box-shadow: 15px 15px #121113;
+`
+const TableHead = styled.thead`
+    background-color: #121113;
+    color: white;
+`
+const TableHeadCellsLeft = styled.th`
+    width: 30%;
+`
+const TableHeadCellsRight = styled.th`
+    width: 70%;
+`
+const TableBodyCellsLeft = styled.td`
+    text-align: center;
+`
+const TableBodyCellsRightInside = styled.td`
+    padding-left: 2rem;
+`
+const BoardTable = styled.table`
+    margin-left: 22vw;
+    margin-right: 28vw;
+    width:50vw;
+    margin-bottom: 5rem;
+    margin-top: 2rem;
+    border-style: solid;
+    border-width: 0.1rem;
+    box-shadow: 15px 15px #121113;
+`
+/* CONTAINERS */
+const TableClues = ({name, xs}) => {
     return (
-        <div
-        className={`col-1 border`}
-        onClick={f}
-        style={{
-            'backgroundColor':vs == 1 ? 'black' : vs == 2 ? 'red' : 'white',
-            'height':'5vh',
-            'width':'5vh',
-            'margin':'0.25vh'
-        }}
-        />
+        <Table>
+        <TableHead>
+            <tr>
+                <TableHeadCellsLeft className='text-center' scope='col'>{name}</TableHeadCellsLeft>
+                <TableHeadCellsRight className='text-center' scope='col'>Clues </TableHeadCellsRight>
+            </tr>
+        </TableHead>
+        <tbody>
+        {xs.map((x) => {
+            return (
+                <tr key={`${name}_${Math.random()*1000}`}>
+                    <TableBodyCellsLeft className='text-center'>{x[0]}</TableBodyCellsLeft>
+                    <td key={`${name}_outside_${Math.random()*1000}`}>
+                        {x[1].map((x)=>{
+                            return(
+                                <TableBodyCellsRightInside key={`${name}_inside_${Math.random()*1000}`}>
+                                    {x}
+                                </TableBodyCellsRightInside>)})}
+                    </td>
+                </tr>
+            )
+        })}
+        </tbody>
+        </Table>
     )
 }
 
 const Nanogram = () => {
-    const [size, setSize] = useState(-1)
-    const [difficulty, setDifficulty] = useState('.')
-    const [showButtonStart, setShowButtonStart] = useState(false)
+    const [game, setGame] = useState({
+        'size' : -1,
+        'difficulty' : '.',
+        'total' : 0,
+        'board' : [],
+        'xsCols' : [],
+        'xsRows' : [],
+        'lifes': 3,
+        'correct': 0 
+    })
 
-    const [board, setBoard] = useState([])
-    const [infoCols, setInfoCols] = useState([])
-    const [infoRows, setInfoRows] = useState([])
-    const [lifes, setLifes] = useState(3)
-    const [totalCells, setTotalCells] = useState(0)
-    const [currentCells, setCurrentCells] = useState(0)
+    const [settings, setSettings] = useState({
+        'showSize' : true,
+        'showDiff' : false,
+        'showGame' : false,
+        'showEnd':false
+    })
+    const sizes = [5,10,15]
+    const diffs = ['easy', 'medium', 'hard', 'impossible']
 
-    const sizeChanger = (event) => {
-        event.preventDefault()
-        setSize(event.target.value)
-    }
-
-    const difficultyChanger = (event) => {
-        event.preventDefault()
-        setDifficulty(event.target.value)
-        setShowButtonStart(true)
-    }
-
-    const f = () => {
+    /* DELIVERS THE ODDS ACCORDING TO THE DIFFICULTY */
+    const f = (difficulty) => {
         const x = Math.random()
         switch (difficulty){
             case 'easy' :
@@ -74,9 +163,10 @@ const Nanogram = () => {
         }
     }
 
+    /* REDUCES A ROW OR COLUMNS */
     const freduce = (v) => {
         var fv = []
-        for (let idx = 0; idx<parseInt(size); idx++){
+        for (let idx = 0; idx<parseInt(game.size); idx++){
             if (v[idx] === 1){
                 if (!fv.length){fv.push(1)}
                 else {
@@ -88,27 +178,25 @@ const Nanogram = () => {
         return fv.filter(x => x != 0)
     }
 
+    /* REDUCES THE WHOLE MATRIX */
     const reduce = (matrix) => {
         var tmp = []
-        for (let i=0; i<parseInt(size); i++){
+        for (let i=0; i<parseInt(game.size); i++){
             tmp.push(freduce( matrix[i] ))
         }
         return tmp
     }
 
-    const generateBoard = (event) => {
-        event.preventDefault()
-
-        setShowButtonStart(false)
-
+    /* GENERATES BOARD AND REDUCES IT PASS FROM 1-1-0 TO 2-0 AND SO ON */
+    const generateBoard = (difficulty) => {
         var infoCols_ = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
         var infoRows_ = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
         var board_ = []
         var tst = 0
-        for (let i=0; i<parseInt(size); i++){
+        for (let i=0; i<parseInt(game.size); i++){
             var col = []
-            for (let j=0; j<parseInt(size); j++){
-                const value = f()
+            for (let j=0; j<parseInt(game.size); j++){
+                const value = f(difficulty)
                 
                 tst = tst + value
 
@@ -118,148 +206,150 @@ const Nanogram = () => {
             }
             board_.push(col)
         }
-        setBoard(board_)
-        setTotalCells(tst)
+
+        game.total = tst
+        game.difficulty = difficulty
+        for (let i=0; i<board_.length; i++){
+            game.board.push(board_[i])
+        }
 
         var cols = reduce(infoCols_)
         var rows = reduce(infoRows_)
         
-        for (let i = 0; i<parseInt(size); i++){
-            infoCols.push( [i, cols[i]] )
-            infoRows[i] = [i, rows[i]]
+        for (let i = 0; i<parseInt(game.size); i++){
+            game.xsCols.push( [i, cols[i]] )
+            game.xsRows[i] = [i, rows[i]]
 
         }
     }
 
-    const string_size = size == -1 ? 'Select board size...' : `Size of the board set to ${size}x${size}`
-    
-    const difficulty_string = difficulty == '.' ? 'Select game difficulty...' : `Difficulty set to ${difficulty}`
+    const Cell = ({value}) => {
+        
+        const [innerSettings, setInnerSettings] = useState({
+            'disabled' : false,
+            'vs' : 0
+        })
+        
+        const widthVal = game.size==5?'15vh':(game.size==10?'8vh':'5vh')
+        
+        const g = (event) => {
+            event.preventDefault()
+            if (!innerSettings.disabled) {
+
+                setInnerSettings({...innerSettings,disabled:true})
+                
+                if (value == 1){
+                    setInnerSettings({...innerSettings,vs:1})
+
+                    setGame({...game,correct:game.correct+1})
+                    if (game.correct+1 >= game.total ) {
+                        settings.showGame = false
+                        settings.showEnd = true
+                    }
+                } else {
+                    innerSettings.v2 = 2
+                    setInnerSettings({...innerSettings,vs:1})
+                    if (game.lifes <= 1 ) {
+                        settings.showGame = false
+                        settings.showEnd = true
+                    }
+                }
+            }
+        }
+        
+
+        return (
+            <td
+                onClick={(e) => g(e)}
+                style={{
+                    'backgroundColor': innerSettings.vs == 1 ? '#121113' : innerSettings.vs == 2 ? '#899878' : '#F7F7F2',
+                    'borderStyle': 'solid',
+                    'borderWidth': '0.05rem',
+                    'height':`${widthVal}`,
+                    'margin':'0.25vh'
+                }}
+            />
+        )
+    }
 
     return (
-        <div className='container align-center' style={{'fontFamily':'Georgia'}}>
+        <div>
+            <Head><title>Nanogram</title></Head>
+            
+            <MainContainer>
 
-            <div className='container' style={{'paddingTop':'3rem', 'paddingLeft':'1rem'}}/>
+                <NeutralContainer>
+                    <LightTitle>Nanogram</LightTitle>
+                    <LightSubSubTitle style={{'display':settings.showSize?'block':'none'}}>Select board size...</LightSubSubTitle>
+                    <LightSubSubTitle style={{'display':settings.showDiff?'block':'none'}}>Select game difficulty...</LightSubSubTitle>
 
-            <div className='card justify-items-center border-white'>
-                <h3 className='align-middle' style={{'paddingLeft':'1rem'}}>Nanogram</h3>
-                <h5 className='align-middle' style={{'paddingLeft':'1rem'}}>{string_size}</h5>
-                <h5 className='align-middle' style={{'paddingLeft':'1rem'}}>{difficulty_string}</h5>
-            </div>
-
-            <div className='container' style={{'paddingTop':'3rem', 'paddingLeft':'1rem'}}/>
-
-            <select
-            className='form-select form-select-sm text-center'
-            aria-label='Size of Board'
-            defaultValue='-1'
-            onChange={sizeChanger}
-            style={{'display' : size != -1 ? 'none' : 'block'}}
-            >
-                <option value='-1'>Select size...</option>
-                <option value='5'>5x5</option>
-                <option value='10'>10x10</option>
-                <option value='15'>15x15</option>
-            </select>
-
-            <select
-            className='form-select form-select-sm text-center'
-            aria-label='Difficulty of the Game'
-            defaultValue={'.'}
-            onChange={difficultyChanger}
-            style={{'display' : size == -1 || difficulty != '.' ? 'none' : 'block'}}
-            >
-                <option value='.'>Select difficulty...</option>
-                <option value='easy'>Easy</option>
-                <option value='medium'>Medium</option>
-                <option value='hard'>Hard</option>
-                <option value='impossible'>Impossible</option>
-            </select>
-
-            <button
-            type='button'
-            className='btn btn-dark'
-            onClick={generateBoard}
-            style={{'display': !showButtonStart ?'none':'block','width':'100%'}}
-            >
-                Start playing
-            </button>
-
-
-            <div className='container' style={{'paddingTop':'1rem', 'paddingLeft':'1rem'}}/>
-
-            <div className='container align-center' style={{'display':lifes>0 && infoCols.length > 0 && currentCells!=totalCells?'block':'none'}}>
-                
-                <div className='row'>
-                    <div className='col'>
-                        <table className='table table-hover'>
-                        <thead>
-                            <tr>
-                                <th className='text-center' scope='col'>Col</th>
-                                <th className='text-center' scope='col'>Clues</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {infoCols.map((x) => {
-                            return (
-                                <tr key={(Math.random()*10000).toString()}>
-                                    <td className='text-center'>{x[0]}</td>
-                                    <td key={(Math.random()*10000).toString()}>{x[1].map((x)=>{return(<span key={(Math.random()*10000).toString()} style={{'paddingRight':'1rem'}}>{x}</span>)})}</td>
-                                </tr>
+                    {/* BOARD SIZE MENU */}
+                    <div style={{'display':settings.showSize?'block':'none'}}>
+                        {sizes.map(
+                            x => { return (
+                                <DarkContainer key={`size_${Math.random()*1000}`}>
+                                    <DarkTitle onClick={() => {
+                                        setGame({...game, 'size':x})
+                                        setSettings({...settings, 'showSize':false, 'showDiff':true})
+                                    }}>{`${x}x${x}`}</DarkTitle>
+                                </DarkContainer>
                             )
                         })}
-                        </tbody>
-                        </table>
                     </div>
-                    <div className='col'>
-                    <table className='table table-hover'>
-                        <thead>
-                            <tr>
-                                <th className='text-center' scope='col'>Row</th>
-                                <th className='text-center' scope='col'>Clues</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {infoRows.map((x) => {
-                            return (
-                                <tr key={(Math.random()*10000).toString()}>
-                                    <td className='text-center'>{x[0]}</td>
-                                    <td key={(Math.random()*10000).toString()}>{x[1].map((x)=>{return(<span key={(Math.random()*10000).toString()} style={{'paddingRight':'1rem'}}>{x}</span>)})}</td>
-                                </tr>
+
+                    {/* DIFFICULTY SIZE MENU */}
+                    <div style={{'display':settings.showDiff?'block':'none'}}>
+                        {diffs.map(
+                            x => { return (
+                                <DarkContainer key={`diffs_${x}`}>
+                                    <DarkTitle onClick={() => {
+                                        setSettings({...settings, 'showDiff':false, 'showGame':true})
+                                        generateBoard(x)
+                                    }}>{`${x}`}</DarkTitle>
+                                </DarkContainer>
                             )
                         })}
-                        </tbody>
-                        </table>
                     </div>
-                </div>
 
-                <div className='card justify-items-center border-white'>
-                    <h5 className='align-middle' style={{'paddingLeft':'1rem'}}>Lifes: {lifes}</h5>
-                    <h6 className='align-middle' style={{'paddingLeft':'1rem'}}>Completness: {currentCells} / {totalCells} ({Math.round(currentCells / totalCells * 100)}%)</h6>
-                </div>
+                    {/* GAME BOARD */}
+                    <div style={{'display':settings.showGame?'block':'none'}}>
+                        <LightSubSubTitle>{`Size of the board set to ${game.size}x${game.size}.`}</LightSubSubTitle>
+                        <LightSubSubTitle>{`Difficulty set to ${game.difficulty}.`}</LightSubSubTitle>
 
-                { board.map( x => { return (
-                    <div className='d-flex flex-column'>
-                        <div className='d-flex justify-content-center'>
-                        {
-                            x.map( x => { return (
-                                <Cell value={x} lifes={lifes} setLifes={setLifes} currentCells={currentCells} setCurrentCells={setCurrentCells}/>
-                            )})
-                        } 
+                        <LightSubTitle>Remmaining Lifes: {game.lifes}</LightSubTitle>
+                        <LightSubSubTitle>Completeness: {game.correct} / {game.total} ({Math.round(game.correct / game.total * 100)}%)</LightSubSubTitle>
+
+                        <TableClues name={'Columns'} xs={game.xsCols}/>
+                        <TableClues name={'Rows'} xs={game.xsRows}/>
+
+                        <BoardTable>
+                        <tbody>
+                        { game.board.map( x => { return (
+                                <tr key={`table_something_${Math.random()*1000}`}>
+                                {
+                                    x.map( x => { return (
+                                        <Cell value={x} key={`cell_${Math.random()*1000}`}/>
+                                    )})
+                                } 
+                                </tr>
+                        )})}
+                        </tbody>
+                        </BoardTable>
+                    </div>
+
+                    {/* FINAL MESSAGE */}
+                    <div style={{'display':settings.showEnd?'block':'none'}}>
+                        <div style={{'display':game.correct == game.total ? 'block':'none'}}>
+                            <LightTitle>You Win!</LightTitle>
+                        </div>
+                        <div style={{'display':game.lifes == 0 ? 'block':'none'}}>
+                            <LightTitle>You Lose...</LightTitle>
                         </div>
                     </div>
-                )})}
-            </div>
 
-            <div className='container' style={{'paddingTop':'1rem', 'paddingLeft':'1rem'}}/>
+                </NeutralContainer>
 
-            <div className='card justify-items-center border-white' style={{'display':lifes==0?'block':'none'}} >
-                <h3 className='align-middle' style={{'paddingLeft':'1rem'}}>Lost...</h3>
-            </div>
-
-            <div className='card justify-items-center border-white' style={{'display':totalCells==currentCells&&infoCols.length>0?'block':'none'}} >
-                <h3 className='align-middle' style={{'paddingLeft':'1rem'}}>Win...</h3>
-            </div>
-
+            </MainContainer>
 
         </div>
     )

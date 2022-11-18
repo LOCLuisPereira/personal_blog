@@ -1,227 +1,245 @@
-import { ImBooks } from 'react-icons/im'
+import { ImBook, ImBooks } from 'react-icons/im'
 import { ImSearch } from 'react-icons/im'
 import { BiMedal } from 'react-icons/bi'
 import { GiDiploma, GiStack } from 'react-icons/gi'
 
 import {SiBootstrap, SiCplusplus, SiCss3, SiFastapi, SiFedora, SiHtml5, SiJava, SiJavascript, SiLatex, SiLinux, SiLinuxmint, SiMacos, SiManjaro, SiMongodb, SiNextdotjs, SiNumpy, SiOcaml, SiOverleaf, SiPandas, SiPopos, SiPostgresql, SiPython, SiPytorch, SiReact, SiRedis, SiUbuntu, SiGraphql, SiVisualstudiocode} from 'react-icons/si'
 
-const Stack = () => {
-    return (
-        
-        <div>
+import infos from '../public/infos.json'
+import styled from 'styled-components'
+import Head from 'next/head'
 
-        <div className='card justify-items-center border-white'>
-            <h3 className='align-middle' style={{'paddingLeft':'1rem'}}><span style={{'fontSize':'2rem'}}><GiStack/></span> Stack</h3>
-            <hr style={{'paddingTop':'0rem'}}/>
-            
-        </div>
-
-
-            <div className='container' style={{'fontSize':'4rem'}}>
-                <div className='d-flex justify-content-center'>
-                    <span style={{'paddingLeft':'1rem'}}><SiPython/></span>
-                    <span style={{'paddingLeft':'1rem'}}><SiJavascript/></span>
-                    <span style={{'paddingLeft':'1rem'}}><SiCplusplus/></span>
-                    <span style={{'paddingLeft':'1rem'}}><SiOcaml/></span>
-                    <span style={{'paddingLeft':'1rem'}}><SiJava/></span>
-                    <span style={{'paddingLeft':'1rem'}}><SiMongodb/></span>
-                    <span style={{'paddingLeft':'1rem'}}><SiRedis/></span>
-                    <span style={{'paddingLeft':'1rem'}}><SiPostgresql/></span>
-                </div>
-                <div className='d-flex justify-content-center'>
-                    <span style={{'paddingLeft':'1rem'}}><SiNumpy/></span>
-                    <span style={{'paddingLeft':'1rem'}}><SiPandas/></span>
-                    <span style={{'paddingLeft':'1rem'}}><SiPytorch/></span>
-                    <span style={{'paddingLeft':'1rem'}}><SiFastapi/></span>
-                    <span style={{'paddingLeft':'1rem'}}><SiNextdotjs/></span>
-                    <span style={{'paddingLeft':'1rem'}}><SiReact/></span>
-                    <span style={{'paddingLeft':'1rem'}}><SiGraphql/></span>
-                    <span style={{'paddingLeft':'1rem'}}><SiHtml5/></span>
-                    <span style={{'paddingLeft':'1rem'}}><SiCss3/></span>
-                    <span style={{'paddingLeft':'1rem'}}><SiBootstrap/></span>
-                </div>
-                <div className='d-flex justify-content-center'>
-                    <span style={{'paddingLeft':'1rem'}}><SiMacos/></span>
-                    <span style={{'paddingLeft':'1rem'}}><SiLinux/></span>
-                    <span style={{'paddingLeft':'1rem'}}><SiUbuntu/></span>
-                    <span style={{'paddingLeft':'1rem'}}><SiManjaro/></span>
-                    <span style={{'paddingLeft':'1rem'}}><SiPopos/></span>
-                    <span style={{'paddingLeft':'1rem'}}><SiLinuxmint/></span>
-                    <span style={{'paddingLeft':'1rem'}}><SiFedora/></span>
-                    <span style={{'paddingLeft':'1rem'}}><SiVisualstudiocode/></span>
-                    <span style={{'paddingLeft':'1rem'}}><SiOverleaf/></span>
-                    <span style={{'paddingLeft':'1rem'}}><SiLatex/></span>
-                </div>
-            </div>
-
-        </div>
-    )
+/* CONTAINERS */
+const MainContainer = styled.div`
+    padding: 0.01rem;
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+    background-color: #F7F7F2;
+    width:100wh;
+    height:100vh;
+    overflow: scroll
+`
+const DarkContainer = styled.div`
+    border-style: solid;
+    border-width: 0.1rem;
+    background-color: #222725;
+    margin-top : 4rem;
+    margin-left : 4rem;
+    margin-right : 4rem;
+    margin-bottom : 4rem;
+    box-shadow: 10px 10px #121113;
+`
+const DarkTitle = styled.h1`
+    color: white;
+    font-family: Georgia, serif;
+    font-size: 1.5rem;
+    text-align:center;
+    padding: 1rem;
+`
+const NeutralContainer = styled.div`
+    background-color: #F7F7F2;
+    margin-top : 2rem;
+    margin-left : 2rem;
+    margin-right : 2rem;
+`
+const LightTitle = styled.h1`
+    color: black;
+    font-family: Georgia, serif;
+    font-size: 2rem;
+    text-align:left;
+    padding-left: 2rem;
+`
+const LightSubTitle = styled.h2`
+    color: black;
+    font-family: Georgia, serif;
+    font-size: 1.5rem;
+    text-align:left;
+    padding-left: 2rem;
+`
+const LightParagraph = styled.p`
+    color: black;
+    font-family: Georgia, serif;
+    font-size: 1rem;
+    text-align:left;
+    padding-left: 3rem;
+`
+const Icon = styled.span`
+    font-size: 2.5rem;
+    padding-right: 1rem;
+    vertical-align: middle;
+`
+const Breaker = styled.hr`
+    padding-top: 0;
+    margin-top: 0;
+`
+const PillContainer = styled.ul`
+    text-decoration: none;
+    padding-left: 3rem;
+    margin: 0;
+`
+const Pill = styled.li`
+    display: inline-block;
+    color: white;
+    border: 2px solid black;
+    background-color: black;
+    font-size: 0.75rem;
+    margin-right: 0.5rem;
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+`
+const StackContainer = styled.p`
+    text-align:center
+`
+const StackWrapper = styled.a`
+    text-align: center;
+    font-size: 4rem;
+    padding-right: 0.25rem;
+`
+/* MODULES */
+const Education = ({xs}) => {
+    return (<div>
+        {xs.map(
+            xs => {
+                return <LightParagraph key={xs.name}>
+                    <strong>{xs.name}</strong>, {xs.institution}, {xs.start}-{xs.end}.
+                </LightParagraph>
+            }
+        )}
+    </div>)
 }
-
-
-
-
-
-const intro = 'I am a computer scientist and engineer who loves to solve problems. In the past, I worked with several machine learning areas, such as computer vision and natural language processing. At the present time, I am leaning towards cloud, back end and data engineering challenges.'
-
-const university = [
-    {
-        'start' : 2019,
-        'end' : 2022,
-        'name' : 'Master\'s Degree in Computer Science and Engineering',
-        'institution' : 'Universidade da Beira Interior'
-    },
-    {
-        'start' : 2016,
-        'end' : 2019,
-        'name' : 'Bachelor\'s Degree in Computer Science and Engineering',
-        'institution' : 'Universidade da Beira Interior'
-    },
-]
-
-const research = [
-    {
-        'start' : 2020,
-        'end' : 2021,
-        'position' : 'Graduate Researcher',
-        'institution' : 'NOVA-LINCs',
-        'description' : 'Research on state-of-the-art methods that optimize resource utilization on neural networks used for semantic segmentation',
-        'tags' : [
-            'Semantic Segmentation', 'Computer Vision', 'Neural Networks', 'Deep Learning',
-            'Machine Learning', 'Data Science', 'PyTorch', 'Python'
-        ]
-    }
-]
-
-const competitions = [
-    {
-        'year' : 2018,
-        'name' : 'SWERC 2018',
-        'location' : 'Paris, France'
-    },
-    {
-        'year' : 2018,
-        'name' : 'MIUP\'18',
-        'location' : 'Covilhã, Portugal'
-    }
-]
-
-const certificates = [
-    {'date':'Sep 22', 'name':'2022 Python for Machine Learning & Data Science Masterclass', 'platform':'Udemy'},
-    {'date':'Sep 22', 'name':'Data Science: Natural Language Processing (NLP) in Python', 'platform':'Udemy'},
-    {'date':'Nov 22', 'name':'Fundamentals of AWS', 'platform':'Educative, Inc.'},
-    {'date':'Aug 22', 'name':'M22P: MongoDB for Python Developers', 'platform':'MongoDB University'},
-    {'date':'Aug 22', 'name':'M320: Data Modeling', 'platform':'MongoDB University'},
-    {'date':'Sep 22', 'name':'Intro to AI Ethics', 'platform':'Kaggle'},
-    {'date':'Sep 22', 'name':'Understanding Data Engineering', 'platform':'DataCamp'},
-    {'date':'Sep 22', 'name':'Understanding Data Science', 'platform':'DataCamp'},
-    {'date':'Sep 22', 'name':'Understanding Data Machine Learning', 'platform':'DataCamp'},
-    {'date':'Sep 22', 'name':'Introduction To SQL', 'platform':'DataCamp'},
-    {'date':'Sep 22', 'name':'Introduction To Python', 'platform':'DataCamp'},
-
-]
-
-
+const Research = ({xs}) => {
+    return (<div>
+        {xs.map(
+            xs => {
+                return <div key={xs.position}>
+                    <LightParagraph>
+                        <strong>{xs.position}</strong>, {xs.description},
+                        {xs.institution}, {xs.start}-{xs.end}.
+                    </LightParagraph>
+                    <PillContainer>
+                        {xs.tags.map(x => {return <Pill key={`${xs.name}.${x}`}>{x}</Pill>})}
+                    </PillContainer>
+                </div>
+            }
+        )}
+    </div>)
+}
+const Competion = ({xs}) => {
+    return (<div>
+        {xs.map(
+            xs => {
+                return <LightParagraph key={xs.name}>
+                    <strong>{xs.name}</strong>, {xs.location}, {xs.year}.
+                </LightParagraph>
+            }
+        )}
+    </div>)
+}
+const Certificates = ({xs}) => {
+    return (<div>
+        {xs.map(
+            xs => {
+                return <LightParagraph key={xs.name}>
+                    <strong>{xs.name}</strong>, {xs.platform}, {xs.date}.
+                </LightParagraph>
+            }
+        )}
+    </div>)
+}
 const Curriculum = () => {
     return (
-        <div className='container text-left' style={{'fontFamily':'Georgia'}}>
+        <MainContainer>
+            <Head><title>Curriculum</title></Head>
 
-            <div className='container' style={{'paddingTop':'3rem', 'paddingLeft':'1rem'}}/>
+            {/* MOTIVATION */}
+            <DarkContainer>
+                <DarkTitle>{infos.curriculum.motivation}</DarkTitle>
+            </DarkContainer>
 
-            <div className='card bg-dark text-white text-left rounded justify-items-center'>
-                <p className='card-text align-middle' style={{'padding':'2rem', 'fontSize':'1.5rem'}}>{intro}</p>
-            </div>
+            {/* Stack */}
+            <NeutralContainer>
+                <LightTitle>
+                    <Icon><GiStack/></Icon>
+                    Stack
+                </LightTitle>
+                <Breaker/>
+                    <StackContainer>
+                        <StackWrapper><SiPython/></StackWrapper>
+                        <StackWrapper><SiJavascript/></StackWrapper>
+                        <StackWrapper><SiCplusplus/></StackWrapper>
+                        <StackWrapper><SiOcaml/></StackWrapper>
+                        <StackWrapper><SiJava/></StackWrapper>
+                        <StackWrapper><SiMongodb/></StackWrapper>
+                        <StackWrapper><SiRedis/></StackWrapper>
+                        <StackWrapper><SiPostgresql/></StackWrapper>
+                    </StackContainer>
+                    <StackContainer>
+                        <StackWrapper><SiNumpy/></StackWrapper>
+                        <StackWrapper><SiPandas/></StackWrapper>
+                        <StackWrapper><SiPytorch/></StackWrapper>
+                        <StackWrapper><SiFastapi/></StackWrapper>
+                        <StackWrapper><SiNextdotjs/></StackWrapper>
+                        <StackWrapper><SiReact/></StackWrapper>
+                        <StackWrapper><SiGraphql/></StackWrapper>
+                        <StackWrapper><SiHtml5/></StackWrapper>
+                        <StackWrapper><SiCss3/></StackWrapper>
+                        <StackWrapper><SiBootstrap/></StackWrapper>
+                    </StackContainer>
+                    <StackContainer>
+                        <StackWrapper><SiMacos/></StackWrapper>
+                        <StackWrapper><SiLinux/></StackWrapper>
+                        <StackWrapper><SiUbuntu/></StackWrapper>
+                        <StackWrapper><SiManjaro/></StackWrapper>
+                        <StackWrapper><SiPopos/></StackWrapper>
+                        <StackWrapper><SiLinuxmint/></StackWrapper>
+                        <StackWrapper><SiFedora/></StackWrapper>
+                        <StackWrapper><SiVisualstudiocode/></StackWrapper>
+                        <StackWrapper><SiOverleaf/></StackWrapper>
+                        <StackWrapper><SiLatex/></StackWrapper>
+                    </StackContainer>
+            </NeutralContainer>
 
-            <div className='container' style={{'paddingTop':'3rem', 'paddingLeft':'1rem'}}/>
+            {/* EDUCATION */}
+            <NeutralContainer>
+                <LightTitle>
+                    <Icon><ImBooks/></Icon>
+                    Education
+                </LightTitle>
+                <Breaker/>
+                <Education xs={infos.curriculum.education}/>
+            </NeutralContainer>
 
+            {/* RESEARCH */}
+            <NeutralContainer>
+                <LightTitle>
+                    <Icon><ImSearch/></Icon>
+                    Research
+                </LightTitle>
+                <Breaker/>
+                <Research xs={infos.curriculum.research}/>
+            </NeutralContainer>
 
+            {/* EDUCATION */}
+            <NeutralContainer>
+                <LightTitle>
+                    <Icon><BiMedal/></Icon>
+                    Competitions
+                </LightTitle>
+                <Breaker/>
+                <Competion xs={infos.curriculum.competitions}/>
+            </NeutralContainer>
 
+            {/* EDUCATION */}
+            <NeutralContainer>
+                <LightTitle>
+                    <Icon><GiDiploma/></Icon>
+                    Certificates
+                </LightTitle>
+                <Breaker/>
+                <Certificates xs={infos.curriculum.certificates}/>
+            </NeutralContainer>
 
-            <Stack/>
-
-
-
-
-            <div className='container' style={{'paddingTop':'3rem', 'paddingLeft':'1rem'}}/>
-
-
-            <div className='card justify-items-center border-white'>
-            <h3 className='align-middle' style={{'paddingLeft':'1rem'}}><span style={{'fontSize':'2rem'}}><ImBooks/></span> Education</h3>
-            <hr style={{'paddingTop':'0rem'}}/>
-            <ul className='list-group'>
-                {university.map(course => {
-                    return  <li className='list-group-item border-0' key={(Math.random()*10000).toString()}>
-                        <p className='align-middle' style={{'paddingLeft':'1rem'}} key={course.name}>
-                            <strong>{course.name}</strong>, {course.institution}, {course.start}-{course.end}.
-                        </p>
-                    </li>
-                })}
-            </ul>
-            </div>
-
-
-            <div className='card justify-items-center border-white'>
-            <h3 className='align-middle' style={{'paddingLeft':'1rem'}}><span style={{'fontSize':'2rem'}}><ImSearch/></span> Research</h3>
-            <hr style={{'paddingTop':'0rem'}}/>
-            <ul className='list-group list-group-flush'>
-                {research.map(job => {
-                    return <li className='list-group-item border-0' key={(Math.random()*10000).toString()}>
-                        <p className='align-middle' style={{'paddingLeft':'1rem'}} key={job.position}>
-                            <strong>{job.position}</strong>, {job.description}, {job.institution}, {job.start}-{job.end}.
-                        </p>
-                        <p style={{'paddingLeft':'1rem'}}>{job.tags.map(xs=>{return (<span className='badge bg-dark' key={(Math.random()*10000).toString()} style={{'margin':'0.25rem'}}>{xs}</span>)})}</p>
-                    </li>
-                })}
-            </ul>
-            </div>
-
-
-
-            <div className='container'>
-                <div className='row'>
-                    <div className='col'>
-                        <div className='card justify-items-center border-white'>
-                            <h3 className='align-middle' style={{'paddingLeft':'1rem'}}><span style={{'fontSize':'2rem'}}><GiDiploma/></span> Certificates</h3>
-                            <hr style={{'paddingTop':'0rem'}}/>
-                            <div style={{'maxHeight':'30vh', 'overflowY':'scroll'}}>
-                                <ul className='list-group'>
-                                    {certificates.map(cert => {
-                                        return  <li key={(Math.random()*10000).toString()} className='list-group-item border-0' style={{'height':'8vh'}}>
-                                            <p className='text-left align-middle' style={{'paddingLeft':'1rem'}} key={cert.name}>
-                                                <strong>{cert.name}</strong>, {cert.platform}, {cert.date}.
-                                            </p>
-                                        </li>
-                                    })}
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='col'>
-                        <div className='card justify-items-center border-white'>
-                            <h3 className='align-middle' style={{'paddingLeft':'1rem'}}><span style={{'fontSize':'2rem'}}><BiMedal/></span> Competitions</h3>
-                            <hr style={{'paddingTop':'0rem'}}/>
-                            <ul className='list-group'>
-                                {competitions.map(comp => {
-                                    return  <li className='list-group-item border-0' key={(Math.random()*10000).toString()}>
-                                        <p className='align-middle' key={(Math.random()*10000).toString()} style={{'paddingLeft':'1rem'}}>
-                                            <strong>{comp.name}</strong>, {comp.location}, {comp.year}.
-                                        </p>
-                                    </li>
-                                })}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-
-
-
-
-        </div>
+        </MainContainer>
     )
 }
 
