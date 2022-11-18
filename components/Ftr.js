@@ -24,7 +24,7 @@ const Phrase = styled.p`
     }
 `
 
-const Footer = () => {
+const Ftr = () => {
     return (
         <ListContainer>
             <Phrase>
@@ -34,4 +34,4 @@ const Footer = () => {
     )
 }
 
-export default Footer
+export default Ftr
