@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }) {
     <div>
       <Navigation/>
       <Component {...pageProps} />
-      <Footer/>
+      <Ftr/>
     </div>
   )
 }
